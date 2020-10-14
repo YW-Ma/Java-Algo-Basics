@@ -91,5 +91,6 @@ public class QueueAndStack {
 		System.out.println(sumOfStack1(stack)); // 10
 		System.out.println(sumOfStack2(stack)); // 10, also clear the stack.
 		System.out.println(sumOfStack1(stack)); // 0
+		System.out.println(9_0000_0012); // 0
 	}
 }
