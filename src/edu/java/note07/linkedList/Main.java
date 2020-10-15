@@ -84,6 +84,46 @@ public class Main {
 		return slow; // slow是结果
 	}
 	
+	// Merge two sorted LinkedList into one long sorted LinkedList.
+	public static ListNode merge(ListNode head1, ListNode head2) {
+		// corner case
+		if (head1 == null) {
+			return head2;
+		} else if (head2 == null) {
+			return head1;
+		}
+		
+		// dummy head - a helper first node
+		ListNode dummyNode = new ListNode(0);
+		ListNode cur1 = head1;
+		ListNode cur2 = head2;
+		ListNode cur = dummyNode;
+		
+		// concatenate and move the smaller one if both is not null
+		while( cur1 != null && cur2 != null) {
+			if (cur1.value < cur2.value) {
+				cur.next = cur1;
+				cur1 = cur1.next;
+			} else {
+				cur.next = cur2;
+				cur2 = cur2.next;
+			}
+			// [NOTICE] DON'T FORGET TO MOVE cur
+			cur = cur.next;
+		}
+		
+		// post-processing, DO NOT MOVE cur.
+		if (cur1 == null) {
+			cur.next = cur2;
+		}
+		if (cur2 == null) {
+			cur.next = cur1;
+		}
+		
+		// return head (dummy.next)
+		return dummyNode.next;
+	}
+	
 	
 	public static void main(String[] args) {
 		ListNode node1 = new ListNode(1);
