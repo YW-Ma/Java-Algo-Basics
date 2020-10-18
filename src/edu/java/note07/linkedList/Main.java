@@ -20,7 +20,7 @@ public class Main {
 		int count = 0;
 		ListNode cur = head;
 		
-		while(cur != null) {
+		while (cur != null) {
 			count++;		// 计数器加一
 			cur = cur.next; // 打开抽屉，读黄色小纸条
 		}
@@ -38,7 +38,7 @@ public class Main {
 		int i = 0;
 		
 		// k --> 可能出现k超过index范围的情况，要考虑。但是只要根据“cur.next要先check”就不会出问题了。
-		while(i < k && cur != null) {;
+		while (i < k && cur != null) {;
 			cur = cur.next; // 只要涉及cur.next，就要先check cur!= null。
 			i++;
 		}
@@ -74,7 +74,7 @@ public class Main {
 		ListNode slow = head;
 		ListNode fast = head;
 		
-		while(fast.next != null && fast.next.next != null) {
+		while (fast.next != null && fast.next.next != null) {
 			// 要先检查odd，再检查even。
 			// 尽管这俩是互斥的，但是不能变顺序。因为.next.next前要先看.next是否存在
 			slow = slow.next;
@@ -100,7 +100,7 @@ public class Main {
 		ListNode cur = dummyNode;
 		
 		// concatenate and move the smaller one if both is not null
-		while( cur1 != null && cur2 != null) {
+		while ( cur1 != null && cur2 != null) {
 			if (cur1.value < cur2.value) {
 				cur.next = cur1;
 				cur1 = cur1.next;
@@ -125,6 +125,34 @@ public class Main {
 	}
 	
 	
+	// remove nodes with target value in the linked list.
+	public static ListNode remove(ListNode head, int target) {
+		// corner case
+		if (head == null) {
+			return head;
+		}
+		
+		// using dummyNode to simplify the problem
+		ListNode dummy = new ListNode(0);
+		dummy.next = head;
+		ListNode cur = head; // current node
+		ListNode pre = dummy; // previous node, used to easily delete the node pointed by cur.
+		
+		// for each step, check and remove
+		while (cur != null) {
+			if (cur.value == target) {
+				pre.next = cur.next;
+				cur = cur.next;
+			} else {
+				pre = cur;
+				cur = cur.next;
+			}
+		}
+		
+		// return dummy.next
+		return dummy.next;
+	}
+	
 	public static void main(String[] args) {
 		ListNode node1 = new ListNode(1);
 		ListNode node2 = new ListNode(2);
@@ -133,7 +161,10 @@ public class Main {
 		node1.next = node2;
 		node2.next = node3;
 		
-		System.out.println(countNode(node1));
-		System.out.println(midNode(node1).value);
+		ListNode head = node1;
+		head = remove(head,1);
+		
+		System.out.println(countNode(head));
+		System.out.println(midNode(head).value);
 	}
 }
