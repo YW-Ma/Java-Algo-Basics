@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class APITest {
 	public static void testQueue() {
-		// 创建、放东西、移除东西。
+		// Create, add, and remove.
 		Deque<Integer> queue = new LinkedList<>();
 		Random r = new Random(0); // set seed as 0
 		for (int i = 0; i < 5; i++) {
