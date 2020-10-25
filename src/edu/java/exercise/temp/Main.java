@@ -20,5 +20,7 @@ public class Main {
 	public static void main(String[] args) {
 		int[] arr = new int[] {1,4,7,10};
 		System.out.println(firstOccur(arr, 7));
+		System.out.println((5 > 4) & (3 * 3 > 8));
+		System.out.println((12 != 10) || 14);
 	}
 }

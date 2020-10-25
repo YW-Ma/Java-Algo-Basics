@@ -1,4 +1,4 @@
-package edu.java.node09.binary_tree;
+package edu.java.note09.binary_tree;
 
 class TreeNode {
 	int value;
